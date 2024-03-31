@@ -14,9 +14,8 @@ jobs:
           terraform_version: 1.7.5
 
       - name: Set up Google Cloud credentials
-        run: echo "$GCP_SA_KEY" > "${{ env.TF_VAR_gcp_credentials_file }}"
-        env:
-          GCP_SA_KEY: ${{ secrets.GCP_SA_KEY }}
+        run: |
+          echo "${{ secrets.GCP_SA_KEY }}" > "${{ env.TF_VAR_gcp_credentials_file }}"
 
       - name: Terraform Init and Apply
         run: |
